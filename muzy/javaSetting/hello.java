@@ -3,6 +3,24 @@ package muzy.javaSetting;
 import java.util.Scanner;
 import java.io.*;
 
+class Calculator {
+    static double PI = 3.14;
+    int left, right;
+ 
+    public Calculator(int left, int right){
+        this.left = left;
+        this.right = right;
+    }
+ 
+    public void sum() {
+        System.out.println(this.left + this.right);
+    }
+ 
+    public void avg() {
+        System.out.println((this.left + this.right) / 2);
+    }
+}
+
 public class hello {
     public static void Number(int j){
         int i = j;
