@@ -6,10 +6,11 @@ import java.util.Iterator;
 import java.io.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 public class todo {
 
-    static void textToList(ArrayList<String> list){
+    static void textToList(ArrayList<String> list){                   //static : 다른 곳에서 인스턴스를 생성하지 않아도 사용할 수 있음. 그냥 void : 인스턴스 생성해야 됨
         try {
             File file = new File("list.txt");
             Scanner file_sc = new Scanner(file);
@@ -35,8 +36,6 @@ public class todo {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        
-        
     }
 
     public static void main(String[] args){
@@ -45,6 +44,15 @@ public class todo {
         int command;
         String work;
         CommandList command_info = new CommandList();
+        HashMap<String,String> map = new HashMap<String,String>();
+        String id, password;
+
+        System.out.println("Put your ID");
+        id = sc.next();
+        System.out.println("Put your Password");
+        password = sc.next();
+        
+        map.put(id,password);
 
         textToList(list);
 
@@ -79,6 +87,20 @@ public class todo {
                 list.remove(command);
             }
             else if(command == 3){
+                String current_pw;
+                System.out.println("put your current password");
+                current_pw = sc.next();
+                if(current_pw.equals(map.get(id))){                                    //자바에서 String 비교는 equals. ==는 주소값 비교
+                    System.out.println("put password to change");
+                    current_pw = sc.next();
+                    map.replace(id, current_pw);
+                    System.out.println(map);
+                }
+                else{
+                    System.out.println("Invalid password. Try again.");
+                }
+            }
+            else if(command == 4){
                 break;
             }
             System.out.println();
@@ -96,6 +118,7 @@ class CommandList{
         System.out.println("0 : todo list");
         System.out.println("1 : add work");
         System.out.println("2 : delete work");
-        System.out.println("3 : exit");
+        System.out.println("3 : change your password");
+        System.out.println("4 : exit");
     }
 }
