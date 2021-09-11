@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Todo {
@@ -42,16 +43,21 @@ public class Todo {
     }
 
     public void completeTODO(BufferedReader br) throws IOException {
+        System.out.println("index: ");
         String index_str = br.readLine();
         int index = Integer.parseInt(index_str);
-        Stream notComplete = TODOList.stream()
+        Stream stream_notComplete = TODOList.stream()
                 .filter(TODO_HashMap -> TODO_HashMap.get("complete").toString().equals("no"));
         // 모르겠어요
-
+        List<Map> notComplete = (List<Map>) stream_notComplete.collect(Collectors.toList());
+        notComplete.get(index).replace("complete", "yes");
     }
 
     public void deleteTODO(BufferedReader br) throws IOException {
-        // 모르겠어요
+        System.out.println("index: ");
+        String index_str = br.readLine();
+        int index = Integer.parseInt(index_str);
+        this.TODOList.remove(index);
     }
 
 
