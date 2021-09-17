@@ -22,6 +22,7 @@ class Pair{
     public String second(){
         return this.job;
     }
+
 }
 
 
@@ -29,7 +30,7 @@ public class DB {
     //짭 디비
     Map<String, List<Pair>> LCharacters = new HashMap<>();
     public boolean save(String id, int level, String job){
-        List<Pair> list = new LinkedList<>();
+        List<Pair> list = new LinkedList<Pair>();
         Pair pair = new Pair(level,job);
         list.add(pair);
         LCharacters.put(id,list);

@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 public class Menu {
     private static DB db = new DB();
-    private static GadianTable gadianTable = new GadianTable();
+    //private static GadianTable gadianTable = new GadianTable();
+
     public static void menurun(){
+
         while(true) {
             int checkmenu = Viewmenu();
             if(checkmenu == 6){
