@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://163.180.117.38:3306/board
+    username: root
+    password: iloveicns
+  jpa:
+    hibernate:
+      ddl-auto: update

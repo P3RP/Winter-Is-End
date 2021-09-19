@@ -28,6 +28,6 @@ public class GardianTable {
     List<Guardian> guardianList = new LinkedList<>();
     Guardian guardian = new Guardian(302,"우르닐");
 
-    guardianList.add(guardian);
+    //guardianList.add(guardian);
 
 }
