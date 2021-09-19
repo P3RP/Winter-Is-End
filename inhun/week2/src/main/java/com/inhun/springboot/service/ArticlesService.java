@@ -1,9 +1,15 @@
 package com.inhun.springboot.service;
 
+
+import com.inhun.springboot.model.Attachments;
+import com.inhun.springboot.model.Uploads;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.inhun.springboot.model.Articles;
 import com.inhun.springboot.model.ArticlesRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,4 +47,6 @@ public class ArticlesService {
     public void deleteById(Long id) {
         articlesRepository.deleteById(id);
     }
+
+
 }

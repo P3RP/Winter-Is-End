@@ -7,7 +7,10 @@ import lombok.*;
 //import lombok.Getter;
 //import lombok.NoArgsConstructor;
 
+import java.sql.Array;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 
 @Getter
@@ -31,6 +34,9 @@ public class Articles {
 
     @Column(name = "published_at")
     private LocalDateTime published_at;
+
+    @Transient
+    private Long uploads_id;
 
     public Articles(Long id, String title, String content) {
         this.id = id;
