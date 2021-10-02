@@ -2,19 +2,14 @@ package com.freckie.week3.payload.board;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.freckie.week3.model.BoardDTO;
-
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
-import java.util.ArrayList;
+import java.util.Optional;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class GetBoardListResponse {
-    private ArrayList<BoardDTO> boards;
+public class PutBoardRequest {
+    private Optional<Integer> readRole;
+    private Optional<Integer> writeRole;
+    private Optional<String> name;
 }
-

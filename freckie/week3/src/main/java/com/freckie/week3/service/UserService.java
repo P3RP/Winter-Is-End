@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 public interface UserService {
     public GetUserListResponse getUserList();
 
-    public GetUserProfileResponse getUserProfile(Long userId);
+    public GetUserProfileResponse getUserProfile(Long userId) throws NoSuchElementException;
 
     public PostSignUpResponse signUp(PostSignUpRequest req) throws NoSuchElementException;
 }

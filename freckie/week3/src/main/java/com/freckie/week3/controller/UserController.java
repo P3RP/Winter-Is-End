@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/v1/users")
-@Api(value="User", tags={"Post"})
+@Api(value="Users", tags={"User Management"})
 public class UserController {
     @Autowired
     private UserService userService;
@@ -37,6 +37,10 @@ public class UserController {
         @ApiImplicitParam(name="email", value="User's unique email", required=true, dataType="String"),
         @ApiImplicitParam(name="password", value="User's plain password", required=true, dataType="String")
     })
+    @ApiResponses({
+        @ApiResponse(code=200, message="Success"),
+        @ApiResponse(code=400, message="Bad request body")
+    })
     public ResponseEntity<PostSignUpResponse> signUp(@Valid @RequestBody PostSignUpRequest req) {
         try {
             PostSignUpResponse resp = userService.signUp(req);
@@ -51,11 +55,18 @@ public class UserController {
     @ApiImplicitParams({
         @ApiImplicitParam(name="user_id", value="User's id", required=true, dataType="Long")
     })
+    @ApiResponses({
+        @ApiResponse(code=200, message="Success"),
+        @ApiResponse(code=404, message="user_id does not exists.")
+    })
     public ResponseEntity<GetUserProfileResponse> getUserProfile(
             @PathVariable(value="user_id") String userId) {
         Long _userId = Long.parseLong(userId);
-        GetUserProfileResponse resp = userService.getUserProfile(_userId);
-
-        return new ResponseEntity<>(resp, HttpStatus.OK);
+        try {
+            GetUserProfileResponse resp = userService.getUserProfile(_userId);
+            return new ResponseEntity<>(resp, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 }
