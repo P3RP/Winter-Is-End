@@ -9,5 +9,5 @@ public class PostBoardRequest {
     private String name;
 
     @NotBlank
-    private
+    private Long userId;
 }
