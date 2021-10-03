@@ -1,0 +1,42 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.freckie'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '16'
+targetCompatibility = '16'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter:2.5.4'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
+	implementation 'org.springframework.boot:spring-boot-starter-hateoas:2.5.4'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.4'
+	implementation 'org.springframework.security:spring-security-core:4.2.11.RELEASE'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'mysql:mysql-connector-java:8.0.25'
+
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+	testImplementation 'org.springframework.security:spring-security-test:5.5.1'
+}
+
+test {
+	useJUnitPlatform()
+}
