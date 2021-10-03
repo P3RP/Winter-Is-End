@@ -1,8 +1,7 @@
 package dasom.board.review.web;
 
-import dasom.board.review.Domain.Member;
-import dasom.board.review.Domain.Review;
-import dasom.board.review.Service.MemberService;
+import dasom.board.review.Domain.UserInfo;
+import dasom.board.review.Service.UserService;
 import dasom.board.review.Service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,29 +14,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.util.List;
 
+
+
 @Controller
 @RequiredArgsConstructor
 public class ReviewController {
     private final ReviewService reviewService;
-    private final MemberService memberService;
+    private final UserService userService;
+
+    @GetMapping("/reviews")
+    public String menu(){
+        return "Menu/menu";
+    }
 
     @GetMapping(value = "/reviews/new")
     public String createForm(Model model){
-        List<Member> members = memberService.findMembers();
+        //List<UserInfo> members = userService.findMembers();
 
-        model.addAttribute("members",members);
+        //로그인 정보 서버에서 가지고 있겠지
         model.addAttribute("reviewform",new ReviewForm());
         return "reviews/createReviewForm";
     }
 
+    @PostMapping(value = "/reviews/new")
+    public String create(@Valid ReviewForm reviewForm, BindingResult result){
+        System.out.println("들어왔습니다.");
+
+        //대충 BaordDB에 저장하는 내용.
+        System.out.println(reviewForm.getComment() + reviewForm.getTitle());
+        return "redirect:Menu/menu";
+    }
+
+    /*
     @PostMapping(value="/reviews/new")
     public String reviewPost(@Valid ReviewForm reviewForm, BindingResult result,@RequestParam("memberId") Long memberId){
         if(result.hasErrors()){
             return "reviews/createReviewForm";
         }
-        System.out.println("hello" + memberService.findOne(memberId).getName() + reviewForm.getTitle());
+        System.out.println("hello" + userService.findOne(memberId).getName() + reviewForm.getTitle());
         return "redirect:/";
     }
+     */
 
 
 }
