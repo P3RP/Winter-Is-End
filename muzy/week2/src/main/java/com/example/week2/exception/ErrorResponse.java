@@ -10,3 +10,4 @@ public class ErrorResponse {
         return jsonObject;
     }
 }
+//JSON으로 에러를 리턴하기 위해 JSON-simple이라는 의존성을 pom.xml에 가져옴

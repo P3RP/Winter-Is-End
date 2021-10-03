@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@ControllerAdvice
+@ControllerAdvice   //@Controller에서 발생할 수 있는 예외를 잡아 처리해주는 annotation임
 @ResponseBody
 public class GlobalException {
     @ExceptionHandler(DuplicateEmailException.class)
