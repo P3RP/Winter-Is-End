@@ -19,3 +19,5 @@ target/
 dist
 bin/
 .vscode-test
+
+application.properties
