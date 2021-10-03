@@ -16,7 +16,7 @@ public class SwaggerConfiguration {
     @Bean
     public Docket swaggerApi(){
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(swaggerInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.week2.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.week2.controller")) //apis 경로는 컨트롤러가 존재하는 경로로 변경
                 .paths(PathSelectors.any())
                 .build()
                 .useDefaultResponseMessages(false);
