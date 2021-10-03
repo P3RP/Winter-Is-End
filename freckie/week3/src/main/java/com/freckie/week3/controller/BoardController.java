@@ -13,13 +13,13 @@ import javax.validation.Valid;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api/v1/boards")
+@RequestMapping("/api/v1")
 @Api(value="Boards", tags={"Board Management"})
 public class BoardController {
     @Autowired
     private BoardService boardService;
 
-    @GetMapping("")
+    @GetMapping("/boards")
     @ApiOperation(value="Get all boards")
     @ApiResponses({
         @ApiResponse(code=200, message="Success")
@@ -29,7 +29,7 @@ public class BoardController {
         return new ResponseEntity<>(resp, HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/boards")
     @ApiOperation(value="Create a new board")
     @ApiImplicitParams({
         @ApiImplicitParam(name="name", value="The new Board's title", required=true, dataType="String"),
@@ -42,7 +42,8 @@ public class BoardController {
         @ApiResponse(code=400, message="user_id does not exists."),
     })
     public ResponseEntity<PostBoardResponse> createBoard(
-        @Valid @RequestBody PostBoardRequest req) {
+        @Valid @RequestBody PostBoardRequest req
+    ) {
         // Validation check
         if (req.getName() == null || req.getReadRole() == null || req.getWriteRole() == null ||
                 req.getUserId() == null
@@ -58,7 +59,7 @@ public class BoardController {
         }
     }
 
-    @PutMapping("/{board_id}")
+    @PutMapping("/boards/{board_id}")
     @ApiOperation(value="Update a specific board")
     @ApiImplicitParams({
         @ApiImplicitParam(name="name", value="The Board's new title", dataType="String"),
@@ -71,7 +72,8 @@ public class BoardController {
     })
     public ResponseEntity<PutBoardResponse> updateBoard(
             @PathVariable(value="board_id") String boardId,
-            @Valid @RequestBody PutBoardRequest req) {
+            @Valid @RequestBody PutBoardRequest req
+    ) {
         try {
             Long _boardId = Long.valueOf(boardId);
             PutBoardResponse resp = boardService.updateBoard(_boardId, req);
@@ -81,7 +83,7 @@ public class BoardController {
         }
     }
 
-    @DeleteMapping("/{board_id}")
+    @DeleteMapping("/boards/{board_id}")
     @ApiOperation(value="Delete a specific board")
     @ApiImplicitParams({
         @ApiImplicitParam(name="board_id", value="The Board's ID", required=true, dataType="String")

@@ -16,13 +16,13 @@ import javax.validation.Valid;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1")
 @Api(value="Users", tags={"User Management"})
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("")
+    @GetMapping("/users")
     @ApiOperation(value="Get all users")
     public ResponseEntity<GetUserListResponse> getUserList() {
         GetUserListResponse resp = userService.getUserList();
@@ -30,7 +30,7 @@ public class UserController {
         return new ResponseEntity<>(resp, HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/users")
     @ApiOperation(value="Add new user")
     @ApiImplicitParams({
         @ApiImplicitParam(name="name", value="User's name", required=true, dataType="String"),
@@ -41,7 +41,9 @@ public class UserController {
         @ApiResponse(code=200, message="Success"),
         @ApiResponse(code=400, message="Bad request body")
     })
-    public ResponseEntity<PostSignUpResponse> signUp(@Valid @RequestBody PostSignUpRequest req) {
+    public ResponseEntity<PostSignUpResponse> signUp(
+        @Valid @RequestBody PostSignUpRequest req
+    ) {
         try {
             PostSignUpResponse resp = userService.signUp(req);
             return new ResponseEntity<>(resp, HttpStatus.OK);
@@ -50,7 +52,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{user_id}/profile")
+    @GetMapping("/users/{user_id}/profile")
     @ApiOperation(value="Get profile of a specific user")
     @ApiImplicitParams({
         @ApiImplicitParam(name="user_id", value="User's id", required=true, dataType="Long")
@@ -60,7 +62,8 @@ public class UserController {
         @ApiResponse(code=404, message="user_id does not exists.")
     })
     public ResponseEntity<GetUserProfileResponse> getUserProfile(
-            @PathVariable(value="user_id") String userId) {
+        @PathVariable(value="user_id") String userId
+    ) {
         Long _userId = Long.parseLong(userId);
         try {
             GetUserProfileResponse resp = userService.getUserProfile(_userId);

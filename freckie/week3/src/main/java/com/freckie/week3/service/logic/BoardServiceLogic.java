@@ -64,13 +64,13 @@ public class BoardServiceLogic implements BoardService {
         Board board = boardRepo.getById(boardId);
 
         // Update the Board
-        if (req.getName() != null) {
+        if (req.getName().isPresent()) {
             board.setName(req.getName().get());
         }
-        if (req.getReadRole() != null) {
+        if (req.getReadRole().isPresent()) {
             board.setReadRole(req.getReadRole().get());
         }
-        if (req.getWriteRole() != null) {
+        if (req.getWriteRole().isPresent()) {
             board.setWriteRole(req.getWriteRole().get());
         }
 

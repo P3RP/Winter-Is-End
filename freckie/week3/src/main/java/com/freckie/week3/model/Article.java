@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@NoArgsConsturctor
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name="articles",
     uniqueConstraints = {
-        @UniqueConstraints(columnNames={"id"})
+        @UniqueConstraint(columnNames={"id"})
     }
 )
 public class Article {
@@ -39,4 +39,12 @@ public class Article {
     @JoinColumn(name="board_id")
     @ManyToOne(targetEntity=Board.class, fetch=FetchType.LAZY)
     private Board board;
+
+    public Article(String title, String contents, LocalDateTime createdAt, User createdBy, Board board) {
+        this.title = title;
+        this.contents = contents;
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
+        this.board = board;
+    }
 }
