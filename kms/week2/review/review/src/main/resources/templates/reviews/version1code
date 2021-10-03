@@ -1,14 +1,21 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments/header :: header"/>
 <body>
 
 <div class = "container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    안녕하세요. <span sec:authentication="name"></span>  님<br>
     <form role ="form" action = "/reviews/new" th:object="${reviewform}" method="post">
+
+        <div class ="form-group">
+            <label for="member">리뷰 달 회원</label>
+            <select name="memberId" id="member" class="form-control">
+                <option value="">회원 선택</option>
+                <option th:each="member : ${members}"
+                        th:value="${member.id}"
+                        th:text="${member.name}"
+            </select>
+        </div>
         <div class ="form-group">
             <label th:for="title">제목을 입력하세요.</label>
             <input type = "text" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요."/>
