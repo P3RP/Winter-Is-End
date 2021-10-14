@@ -10,6 +10,30 @@
   <div class="jumbotron">
     <h1>Review Board</h1>
     <p class="lead">리뷰 기능</p>
+    <div>
+      <table class = "table table-striped">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>아이디</th>
+          <th>제목</th>
+          <th>코멘트</th>
+          <th>작성날짜</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${boards}">
+          <td th:text = "${board.code}"></td>
+          <td th:text = "${board.id}"></td>
+          <td th:text = "${board.title}"></td>
+          <td th:text = "${board.comment}"></td>
+          <td th:text = "${board.now}"</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
     <form id="newreview" method="get">
       <input type="submit" value="글쓰기" formaction="/reviews/new"/>
     </form>

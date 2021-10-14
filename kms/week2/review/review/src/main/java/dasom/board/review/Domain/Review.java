@@ -1,13 +1,12 @@
 package dasom.board.review.Domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "dtype")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
 @Table(name = "review")
 public class Review {
@@ -19,5 +18,11 @@ public class Review {
     private String title;
     private String comment;
 
+
+    @Builder
+    public Review(String title, String comment){
+        this.title = title;
+        this.comment = comment;
+    }
 
 }

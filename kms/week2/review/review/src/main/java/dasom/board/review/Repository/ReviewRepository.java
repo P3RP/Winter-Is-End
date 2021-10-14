@@ -13,12 +13,13 @@ public class ReviewRepository {
 
     private final EntityManager em;
 
-    public void save(Review review){
+    public Long save(Review review){
         if(review.getId() == null){
             em.persist(review);
         } else{
             em.merge(review);
         }
+        return review.getId();
     }
 
     public Review findOne(Long id){

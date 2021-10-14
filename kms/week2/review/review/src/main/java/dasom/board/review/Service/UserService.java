@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserInfo loadUserByUsername(String email) throws UsernameNotFoundException{
         Optional<UserInfo> findEmail = userRepository.findByEmail(email);
-        System.out.println(findEmail + " !@!!#@!#");
+        System.out.println(findEmail + "loadUserByUsername()");
         return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(email));
     }
 
@@ -50,16 +50,29 @@ public class UserService implements UserDetailsService {
     @return 저장되는 회원의 PK
      */
     public Long save(UserInfoDto infoDto){
+        //중복검증
+        Optional<UserInfo> byEmail = userRepository.findByEmail(infoDto.getEmail());
+        if(!byEmail.isEmpty()){
+            throw new IllegalStateException("이미 존재하는 회원임니다.");
+        }
         BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
         infoDto.setPassword(encode.encode(infoDto.getPassword()));
-        System.out.println("save!!!");
+
         return userRepository.save(UserInfo.builder()
                 .email(infoDto.getEmail())
                 .auth(infoDto.getAuth())
-                .password(infoDto.getPassword()).build()).getCode();
+                .password(infoDto.getPassword())
+                .build()).getCode();
     }
 
+
     //예전 코드
+
+//    public UserInfo findbytoken(String token){
+//        System.out.println("find token : " + token);
+//        return userRepository.findByToken(token).orElseThrow(()-> new ExpressionException("없는 아이디"));
+//    }
+
 
     /*
     회원가입
@@ -97,7 +110,7 @@ public class UserService implements UserDetailsService {
     //유저 비밀번호 수정 차후 해야함.
     public void userModify(UserInfoDto userInfoDto){
         UserInfo fuser = findOne(userInfoDto.getEmail());
-        fuser.setPassword(userInfoDto.getPassword());
+        //fuser.setPassword(userInfoDto.getPassword());
     }
 
     //유저 삭제 차후 작성

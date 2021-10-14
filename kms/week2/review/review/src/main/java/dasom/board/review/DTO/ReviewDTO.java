@@ -1,11 +1,11 @@
-package dasom.board.review.web;
+package dasom.board.review.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
-public class ReviewForm {
-    private Long id;
+@Getter
+@Setter
+public class ReviewDTO {
 
     private String title;
     private String comment;
