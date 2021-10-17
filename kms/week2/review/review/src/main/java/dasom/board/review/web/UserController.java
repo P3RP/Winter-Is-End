@@ -29,24 +29,15 @@ public class UserController {
 
     private final UserService userService;
     private final JwtTokenProvider jwtTokenProvider;
+
+    @GetMapping("/admin")
+    public String swaggerview(){
+        System.out.println("heheheheheheheheh");
+        return "/admin";
+    }
+
     @PostMapping("/user")
     public String signup(UserInfoDto infoDto,HttpServletRequest httpServletRequest){
-        //String token = jwtTokenProvider.createToken(infoDto.getEmail(), infoDto.getAuth());
-        //System.out.println("Token = !!!! " + token);
-
-        /*
-        Enumeration<String> headerNames = httpServletRequest.getHeaderNames();
-        String hname = "";
-        String hvalue = "";
-//        while(headerNames.hasMoreElements()){
-//            hname = headerNames.nextElement();
-//            hvalue = httpServletRequest.getHeader(hname);
-//            System.out.println("headerName : " +hname);
-//            System.out.println("headerValue : " + hvalue);
-//        }
-//        System.out.println(infoDto.getEmail() + infoDto.getAuth() + "infoDto!!!" + infoDto.getPassword());
-        */
-
         userService.save(infoDto);
         return "redirect:/login";
     }
@@ -68,8 +59,6 @@ public class UserController {
         }
 
         String token = jwtTokenProvider.createToken(userInfo.getEmail(), userInfo.getAuth());
-        System.out.println("login token = " + token);
-        System.out.println("userInfo.getEmail() = " + userInfo.getEmail());
         response.setHeader("X-AUTH-TOKEN",token);
 
         Cookie cookie = new Cookie("X-AUTH-TOKEN",token);
