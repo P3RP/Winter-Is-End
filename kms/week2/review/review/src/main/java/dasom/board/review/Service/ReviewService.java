@@ -1,8 +1,10 @@
 package dasom.board.review.Service;
 
+import dasom.board.review.DTO.ReviewDTO;
 import dasom.board.review.Domain.Review;
 import dasom.board.review.Repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.ReactiveAdapterRegistry;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,8 +18,12 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
 
     @Transactional
-    public void saveReview(Review review){
-        reviewRepository.save(review);
+    public Long saveReview(ReviewDTO reviewDTO){
+
+        return reviewRepository.save(Review.builder()
+                .title(reviewDTO.getTitle())
+                .comment(reviewDTO.getComment())
+                .build());
     }
 
     public List<Review> findReview(){

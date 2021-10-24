@@ -13,8 +13,7 @@ import java.util.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
-//쓰면 안되는데..
-@Setter
+
 @Table(name = "userinfo")
 public class UserInfo implements UserDetails {
     //strategy ~ -> 데이터베이스에 위임한다는 뜻. 기본키 생성을 DB에 위임
@@ -22,7 +21,7 @@ public class UserInfo implements UserDetails {
     @Column(name = "code")
     private Long code;
 
-    @Column(name = "email",unique = true)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "password")

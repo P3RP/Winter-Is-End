@@ -27,6 +27,7 @@ public class SwaggerUserController {
         return userService.findMembers();
     }
 
+    /*
     @ApiOperation(value = "회원 등록",notes = "회원의 정보를 받아 DB에 넣는다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK"),
@@ -37,6 +38,7 @@ public class SwaggerUserController {
         userService.save(userInfoDto);
         return userService.findMembers();
     }
+     */
 
     @ApiOperation(value = "회원 정보", notes = "회원 한 명에 대한 정보")
     @GetMapping(value = "/user/{userid}",headers = {"Content-type = application/json"})

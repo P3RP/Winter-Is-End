@@ -8,8 +8,10 @@
 <h1>Sign Up</h1> <hr>
 
 <form th:action="@{/user}" method="POST">
+  <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
   Id : <input type="text" name="email"> <br>
   password : <input type="password" name="password"> <br>
+
   <input type="radio" name="auth" value="ROLE_ADMIN,ROLE_USER"> admin
   <input type="radio" name="auth" value="ROLE_USER" checked="checked"> user <br>
   <button type="submit">Join</button>

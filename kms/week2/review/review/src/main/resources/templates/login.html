@@ -8,10 +8,12 @@
 <h1>Login</h1> <hr>
 <img th:src= "@{/img/logo.jpeg}"/>
 
-<form action="/login" method="POST">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    id : <input type="text" name="username"> <br>
-    password : <input type="password" name="password"> <br>
+<form action="/loginProcess" th:object = "${userdto}" method="POST">
+    <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+    <!--id : <input type="text" th:field = "*{email}" name="username"> <br>-->
+    id : <input type="text" th:field = "*{email}"> <br>
+    <!--password : <input type="password" th:field = "*{password}" name="password"> <br>-->
+    password : <input type="password" th:field = "*{password}"> <br>
     <button type="submit">Login</button>
 </form> <br>
 
