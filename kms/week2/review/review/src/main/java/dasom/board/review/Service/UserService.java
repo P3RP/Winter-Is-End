@@ -20,12 +20,6 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
 
-    /*
-    //DI
-    @Autowired
-    MemberRepository memberRepository;
-    */
-
     //lombok을 쓰면 위의 Autowired안 써도 됨.
     private final UserRepository userRepository;
 
@@ -65,25 +59,6 @@ public class UserService implements UserDetailsService {
                 .build()).getCode();
     }
 
-
-    //예전 코드
-
-//    public UserInfo findbytoken(String token){
-//        System.out.println("find token : " + token);
-//        return userRepository.findByToken(token).orElseThrow(()-> new ExpressionException("없는 아이디"));
-//    }
-
-
-    /*
-    회원가입
-     */
-//    @Transactional
-//    public Long join(UserInfo member){
-
-//        validateDuplicateMember(member); //중복 회원 검증
-//        memberRepository.save(member);
-//        return member.getId();
-//    }
 
     /*
     중복 회원 검증

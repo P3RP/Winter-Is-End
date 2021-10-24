@@ -16,6 +16,11 @@ public interface UserRepository extends JpaRepository<UserInfo,Long> {
     Optional<UserInfo> findByEmail(String email);
     // 옛날 코드
 
+
+
+
+
+
     // 엔티티 매니저 주입
 //    @PersistenceContext
 //    EntityManager em;

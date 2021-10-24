@@ -56,6 +56,8 @@ public class JwtTokenProvider {
         return new UsernamePasswordAuthenticationToken(userDetails,"",userDetails.getAuthorities());
     }
 
+    //kms가 만듦.
+    // 헤더에 저장된 토큰값을 빼옴.
     public String jwtgetToken(HttpServletRequest httpServletRequest){
         Enumeration<String> headerNames = httpServletRequest.getHeaderNames();
         String hname = "";

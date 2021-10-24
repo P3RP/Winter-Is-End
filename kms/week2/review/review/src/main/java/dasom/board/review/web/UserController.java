@@ -100,33 +100,5 @@ public class UserController {
     }
 
 
-    // 예전 코드
 
-//     @GetMapping(value = "/members/new")
-//    public String createForm(Model model){
-//        model.addAttribute("memberForm",new MemberForm());
-//        return "members/createMemberForm";
-//    }
-
-//    @PostMapping(value="/members/new")
-//    public String create(@Valid MemberForm form, BindingResult result){
-
-//        if(result.hasErrors()){
-//            return "members/createMemberForm";
-//        }
-
-//        UserInfo member = new UserInfo();
-//        member.setName(form.getName());
-
-//        memberService.join(member);
-
-//        return "redirect:/";
-//    }
-
-//    @GetMapping(value = "/members")
-//    public String list(Model model){
-//        List<UserInfo> members = memberService.findMembers();
-//        model.addAttribute("members",members);
-//        return "members/memberList";
-//    }
 }
